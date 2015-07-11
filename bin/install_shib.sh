@@ -1,16 +1,5 @@
-# create yum repo
-cat <<EOF>/etc/yum.repos.d/security\:shibboleth.repo 
-[security_shibboleth]
-name=Shibboleth
-type=rpm-md
-baseurl=http://download.opensuse.org/repositories/security:/shibboleth/RHEL_6/
-gpgcheck=1
-gpgkey=http://download.opensuse.org/repositories/security:/shibboleth/RHEL_6/repodata/repomd.xml.key
-enabled=1
-EOF
-
 #install shib and dependencies
-yum -y install shibboleth
+apt-get install -y libapache2-mod-shib2
 
 # grab ua specific deployment files
 wget https://shibboleth.arizona.edu/sp-files/UA-IdP.pem -O /etc/shibboleth/UA-IdP.pem
