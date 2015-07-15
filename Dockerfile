@@ -18,6 +18,15 @@ RUN \
     proxy \
     proxy_http
 
+# Install Shibboleth
+COPY ./bin/install_shib.sh /install_shib.sh
+RUN chmod +x /install_shib.sh && \
+  /install_shib.sh && \
+  rm install_shib.sh
+
+#Copy the startup script
+COPY ./bin/start_apache.sh /start_apache.sh
+
 EXPOSE 80
 
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+CMD ["/start_apache.sh"]
