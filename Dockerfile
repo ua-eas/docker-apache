@@ -1,4 +1,4 @@
-FROM shaloo/base
+FROM easksd/base
 
 RUN \
   apt-get update && \
