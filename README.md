@@ -8,14 +8,17 @@ This container assumes that it has a security container mounted which contains c
 
 The startup script is start_apache.sh. This script will copy in any required secure credentials or keys from the mounted /security directory and start shibboleth and apache.
 
-# Docker Run Example
-sudo docker run -d -p 80:80 \
--e "SERVER_NAME=ka-tools.mosaic.arizona.edu" \
---name ksd-tools-apache \
---link ksd-tools-jenkins:ksd-tools-jenkins \
---link ksd-tools-nexus:ksd-tools-nexus \
--v /kuali-configs/security/tools/apache/:/security \
-easksd/tools-apache /start_apache.sh
+## Docker Run Example
+
+Below is an example docker run command to get Apache running. 
+
+    sudo docker run -d -p 80:80 \
+    -e "SERVER_NAME=ka-tools.mosaic.arizona.edu" \
+    --name ksd-tools-apache \
+    --link ksd-tools-jenkins:ksd-tools-jenkins \
+    --link ksd-tools-nexus:ksd-tools-nexus \
+    -v /kuali-configs/security/tools/apache/:/security \
+    easksd/tools-apache /start_apache.sh
 
 This will start the Apache Docker container as a daemon process. It will run the default startup script which is:
 ``` sh
